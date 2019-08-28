@@ -1007,7 +1007,9 @@ extension DropDown {
             selectedRowIndices.remove(at: selectedRowIndex)
         }
 
-		tableView.deselectRow(at: IndexPath(row: index, section: 0), animated: true)
+        DispatchQueue.main.async { // UITableView.deselectRow(at:animated:) must be used from main thread only
+            self.tableView.deselectRow(at: IndexPath(row: index, section: 0), animated: true)
+        }
 	}
     
     // de-selects the rows at the indices provided
