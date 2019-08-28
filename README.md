@@ -1,7 +1,7 @@
 ![DropDown](Screenshots/logo.png)
 
 [![License: MIT](http://img.shields.io/badge/license-MIT-70a1fb.svg?style=flat)](https://github.com/AssistoLab/DropDown/blob/master/README.md)
-[![Version] 2.3.14
+[![Version]] 2.3.14
 
 A Material Design drop down list for iOS written in Swift.
 
