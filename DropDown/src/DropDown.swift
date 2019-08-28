@@ -2,7 +2,8 @@
 //  DropDown.swift
 //  DropDown
 //
-//  Created by Kevin Hirsch on 28/07/15.
+//  Created by Kevin Hirsch on 28/07/15
+//  Fixed issues - cellHeight and cellNib main thread and added guard to fittingWidth - by Thomas Bechtum on 28-AUG-2019
 //  Copyright (c) 2015 Kevin Hirsch. All rights reserved.
 //
 
@@ -175,11 +176,15 @@ public final class DropDown: UIView {
 	fileprivate var xConstraint: NSLayoutConstraint!
 	fileprivate var yConstraint: NSLayoutConstraint!
 
-	//MARK: Appearance
-	@objc public dynamic var cellHeight = DPDConstant.UI.RowHeight {
-		willSet { tableView.rowHeight = newValue }
-		didSet { reloadAllComponents() }
-	}
+    // MARK: Appearance
+    @objc public dynamic var cellHeight = DPDConstant.UI.RowHeight {
+        willSet {
+            DispatchQueue.main.async { // UITableView.rowHeight must be used from main thread only
+                self.tableView.rowHeight = newValue
+            }
+        }
+        didSet { reloadAllComponents() }
+    }
 
 	@objc fileprivate dynamic var tableViewBackgroundColor = DPDConstant.UI.BackgroundColor {
 		willSet {
@@ -357,7 +362,9 @@ public final class DropDown: UIView {
      */
 	public var cellNib = UINib(nibName: "DropDownCell", bundle: Bundle(for: DropDownCell.self)) {
 		didSet {
-			tableView.register(cellNib, forCellReuseIdentifier: DPDConstant.ReusableIdentifier.DropDownCell)
+            DispatchQueue.main.async { // UITableView.register(_:forCellReuseIdentifier:) must be used from main thread only
+                self.tableView.register(self.cellNib, forCellReuseIdentifier: DPDConstant.ReusableIdentifier.DropDownCell)
+            }
 			templateCell = nil
 			reloadAllComponents()
 		}
@@ -751,9 +758,14 @@ extension DropDown {
 	}
 	
 	fileprivate func fittingWidth() -> CGFloat {
-		if templateCell == nil {
+		
+        if templateCell == nil {
 			templateCell = (cellNib.instantiate(withOwner: nil, options: nil)[0] as! DropDownCell)
 		}
+        
+        guard let templateCell = templateCell else { // avoids crash
+            return 210.0 // default -> see MyCell.xib example
+        }
 		
 		var maxWidth: CGFloat = 0
 		

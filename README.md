@@ -1,6 +1,7 @@
 ![DropDown](Screenshots/logo.png)
 
-[![Twitter: @kevinh6113](http://img.shields.io/badge/contact-%40kevinh6113-70a1fb.svg?style=flat)](https://twitter.com/kevinh6113)
+Thomas Bechtum fixed issues in release 2.3.13 discovered AUG-2019
+
 [![License: MIT](http://img.shields.io/badge/license-MIT-70a1fb.svg?style=flat)](https://github.com/AssistoLab/DropDown/blob/master/README.md)
 [![Version](http://img.shields.io/badge/version-2.3.13-green.svg?style=flat)](https://github.com/AssistoLab/DropDown)
 [![Cocoapods](http://img.shields.io/badge/Cocoapods-available-green.svg?style=flat)](http://cocoadocs.org/docsets/DropDown/)
@@ -22,12 +23,11 @@ To install [CocoaPods](http://www.cocoapods.org), run `sudo gem install cocoapod
 ## Installation 📱
 
 `DropDown` supports Swift 5.0 since version `2.3.13`.
-`DropDown` supports Swift 4.2 since version `2.3.4`.
 
-If you need Swift 4.0, use version 2.3.2:
-- Manually: use tag `2.3.2`
-- CocoaPods: `pod 'DropDown', '2.3.2'`
-- Carthage: `github "AssistoLab/DropDown" == 2.3.2`
+If you need Swift 4.2, use version 2.3.12:
+- Manually: use tag `2.3.12`
+- CocoaPods: `pod 'DropDown', '2.3.12'`
+- Carthage: `github "AssistoLab/DropDown" == 2.3.12`
 
 ### CocoaPods
 
