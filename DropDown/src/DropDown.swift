@@ -4,6 +4,7 @@
 //
 //  Created by Kevin Hirsch on 28/07/15
 //  Fixed issues - cellHeight and cellNib main thread and added guard to fittingWidth - by Thomas Bechtum on 28-AUG-2019
+//  Removed as NSIndexPath casts where appropriate - by Thomas Bechtum on 29-AUG-2019
 //  Copyright (c) 2015 Kevin Hirsch. All rights reserved.
 //
 
@@ -1021,13 +1022,12 @@ extension DropDown {
 
 	/// Returns the index of the selected row.
 	public var indexForSelectedRow: Index? {
-		return (tableView.indexPathForSelectedRow as NSIndexPath?)?.row
+		return tableView.indexPathForSelectedRow?.row // (tableView.indexPathForSelectedRow as NSIndexPath?)?.row
 	}
 
 	/// Returns the selected item.
 	public var selectedItem: String? {
-		guard let row = (tableView.indexPathForSelectedRow as NSIndexPath?)?.row else { return nil }
-
+		guard let row = tableView.indexPathForSelectedRow?.row else { return nil } // (tableView.indexPathForSelectedRow as NSIndexPath?)?.row else { return nil }
 		return dataSource[row]
 	}
 
@@ -1063,11 +1063,10 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 	}
 
 	public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
 		let cell = tableView.dequeueReusableCell(withIdentifier: DPDConstant.ReusableIdentifier.DropDownCell, for: indexPath) as! DropDownCell
-		let index = (indexPath as NSIndexPath).row
-
-		configureCell(cell, at: index)
-
+		// let index = (indexPath as NSIndexPath).row
+		configureCell(cell, at: indexPath.row) // configureCell(cell, at: index)
 		return cell
 	}
 	
@@ -1092,12 +1091,14 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 	}
 
 	public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.isSelected = selectedRowIndices.first{ $0 == (indexPath as NSIndexPath).row } != nil
+        
+        cell.isSelected = selectedRowIndices.first{ $0 == indexPath.row } != nil
+        // cell.isSelected = selectedRowIndices.first{ $0 == (indexPath as NSIndexPath).row } != nil
 	}
 
 	public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let selectedRowIndex = (indexPath as NSIndexPath).row
         
+		let selectedRowIndex = indexPath.row // (indexPath as NSIndexPath).row
         
         // are we in multi-selection mode?
         if let multiSelectionCallback = multiSelectionAction {
