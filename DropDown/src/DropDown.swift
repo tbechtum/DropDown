@@ -4,7 +4,8 @@
 //
 //  Created by Kevin Hirsch on 28/07/15
 //  Fixed issues - cellHeight and cellNib main thread and added guard to fittingWidth - by Thomas Bechtum on 28-AUG-2019
-//  Removed as NSIndexPath casts where appropriate - by Thomas Bechtum on 29-AUG-2019
+//  Removed as NSIndexPath casts where appropriate by Thomas Bechtum on 29-AUG-2019
+//  Improved stabililty of configureCell method by Thomas Bechtum on 30-AUG-2019
 //  Copyright (c) 2015 Kevin Hirsch. All rights reserved.
 //
 
@@ -1078,7 +1079,7 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
         cell.highlightTextColor = selectedTextColor
         cell.normalTextColor = textColor
         
-        guard index >= 0 else {
+        guard index >= 0 else { // added by Thomas Bechtum
             return
         }
         
@@ -1086,7 +1087,7 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 			cell.accessibilityIdentifier = localizationKeysDataSource[index]
 		}
     
-        guard index < dataSource.count else { // guard index >= 0 && index < dataSource.count else {
+        guard index < dataSource.count else { // added by Thomas Bechtum
             return
         }
 		
