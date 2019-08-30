@@ -1071,15 +1071,24 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	fileprivate func configureCell(_ cell: DropDownCell, at index: Int) {
-		if index >= 0 && index < localizationKeysDataSource.count {
-			cell.accessibilityIdentifier = localizationKeysDataSource[index]
-		}
-		
-		cell.optionLabel.textColor = textColor
-		cell.optionLabel.font = textFont
-		cell.selectedBackgroundColor = selectionBackgroundColor
+        
+        cell.optionLabel.textColor = textColor
+        cell.optionLabel.font = textFont
+        cell.selectedBackgroundColor = selectionBackgroundColor
         cell.highlightTextColor = selectedTextColor
         cell.normalTextColor = textColor
+        
+        guard index >= 0 else {
+            return
+        }
+        
+		if index < localizationKeysDataSource.count { // if index >= 0 && index < localizationKeysDataSource.count {
+			cell.accessibilityIdentifier = localizationKeysDataSource[index]
+		}
+    
+        guard index < dataSource.count else { // guard index >= 0 && index < dataSource.count else {
+            return
+        }
 		
 		if let cellConfiguration = cellConfiguration {
 			cell.optionLabel.text = cellConfiguration(index, dataSource[index])
