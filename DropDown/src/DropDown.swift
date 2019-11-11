@@ -1138,7 +1138,7 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
         // Perform single selection logic
         selectedRowIndices.removeAll()
         selectedRowIndices.insert(selectedRowIndex)
-        if let rowAction = self.selectionAction {
+        if let rowAction = self.selectionAction { // Needed to bind in order to fire the desired selection action callback for customisation
             rowAction(selectedRowIndex, dataSource[selectedRowIndex])
         }
         if let _ = anchorView as? UIBarButtonItem {
