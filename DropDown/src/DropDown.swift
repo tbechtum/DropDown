@@ -6,6 +6,7 @@
 //  Fixed issues - cellHeight and cellNib main thread and added guard to fittingWidth - by Thomas Bechtum on 28-AUG-2019
 //  Removed as NSIndexPath casts where appropriate by Thomas Bechtum on 29-AUG-2019
 //  Improved stabililty of configureCell method by Thomas Bechtum on 30-AUG-2019
+//  Fixed didSelectRowAt did not launch selectionAction by Thomas Bechtum on 11-NOV-2019
 //  Copyright (c) 2015 Kevin Hirsch. All rights reserved.
 //
 
@@ -1123,11 +1124,11 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
             }
             else {
                 selectedRowIndices.insert(selectedRowIndex)
-
 				let selectedRowIndicesArray = Array(selectedRowIndices)
 				let selectedRows = selectedRowIndicesArray.map { dataSource[$0] }
-                
-                selectionAction?(selectedRowIndex, dataSource[selectedRowIndex])
+                if let rowAction = self.selectionAction {
+                    rowAction(selectedRowIndex, dataSource[selectedRowIndex])
+                }
                 multiSelectionCallback(selectedRowIndicesArray, selectedRows)
                 tableView.reloadData()
                 return
@@ -1137,15 +1138,14 @@ extension DropDown: UITableViewDataSource, UITableViewDelegate {
         // Perform single selection logic
         selectedRowIndices.removeAll()
         selectedRowIndices.insert(selectedRowIndex)
-        selectionAction?(selectedRowIndex, dataSource[selectedRowIndex])
-        
+        if let rowAction = self.selectionAction {
+            rowAction(selectedRowIndex, dataSource[selectedRowIndex])
+        }
         if let _ = anchorView as? UIBarButtonItem {
             // DropDown's from UIBarButtonItem are menus so we deselect the selected menu right after selection
             deselectRow(at: selectedRowIndex)
         }
-        
         hide()
-    
 	}
 
 }
