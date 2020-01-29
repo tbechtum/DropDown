@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="top" id="Gb4-Nu-YHj"/>
                         <viewControllerLayoutGuide type="bottom" id="Fqn-ZE-M5e"/>
                     </layoutGuides>
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="lH9-eW-CtL">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="lH9-eW-CtL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -191,7 +191,7 @@
                             <constraint firstItem="jhl-iV-Oh8" firstAttribute="leading" secondItem="lH9-eW-CtL" secondAttribute="leadingMargin" id="s5z-Ij-3Yh"/>
                             <constraint firstItem="aXM-aw-Gwc" firstAttribute="leading" secondItem="lH9-eW-CtL" secondAttribute="leadingMargin" id="sJ2-xV-ahU"/>
                             <constraint firstItem="MeY-qi-ZDF" firstAttribute="top" secondItem="FJF-wb-wuG" secondAttribute="bottom" constant="20" id="sdq-De-xHl"/>
-                            <constraint firstItem="Fqn-ZE-M5e" firstAttribute="top" secondItem="ajN-P2-z3O" secondAttribute="bottom" constant="10" id="tie-jc-BSO"/>
+                            <constraint firstItem="Fqn-ZE-M5e" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ajN-P2-z3O" secondAttribute="bottom" constant="10" id="tie-jc-BSO"/>
                             <constraint firstItem="Sxf-NX-PA6" firstAttribute="top" secondItem="SPc-ge-GiP" secondAttribute="bottom" constant="20" id="uEp-oe-y6h"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="svj-jk-Xj6" secondAttribute="trailing" constant="18" id="umS-7K-L33"/>
                             <constraint firstAttribute="trailingMargin" secondItem="evd-34-0pX" secondAttribute="trailing" id="vOk-2u-tnf"/>
