@@ -3,10 +3,48 @@
 //  DropDown
 //
 //  Created by Kevin Hirsch on 28/07/15.
+//  Supports iOS 13 dark mode and smart color inversion by Thomas Bechtum on 29-JAN-2020
+//
 //  Copyright (c) 2015 Kevin Hirsch. All rights reserved.
 //
 
 import UIKit
+
+/// Custom UI Colors
+public extension UIColor {
+    
+    /// Label color
+    /// Supports iOS 13 dark mode and smart color inversion
+    class func labelText() -> UIColor {
+        
+        if #available(iOS 13.0, *) {
+            return UIColor.label
+        }
+        return UIColor.black
+    }
+    
+    /// Background color
+    /// Supports iOS 13 dark mode and smart color inversion
+    class func background() -> UIColor {
+        
+        if #available(iOS 13.0, *) {
+            // if UITraitCollection.current.userInterfaceStyle == .dark {
+            return UIColor.secondarySystemBackground // UIColor.systemBackground
+        }
+        return UIColor(white: 0.94, alpha: 1)
+    }
+    
+    /// Selected Background color
+    /// Supports iOS 13 dark mode and smart color inversion
+    class func selectedBackground() -> UIColor {
+        
+        if #available(iOS 13.0, *) {
+            // if UITraitCollection.current.userInterfaceStyle == .dark {
+            return UIColor.systemGray2
+        }
+        return UIColor(white: 0.89, alpha: 1)
+    }
+}
 
 internal struct DPDConstant {
 
@@ -23,12 +61,12 @@ internal struct DPDConstant {
 	}
 
 	internal struct UI {
-
-		static let TextColor = UIColor.black
-        static let SelectedTextColor = UIColor.black
+        
+		static let TextColor = UIColor.labelText()
+        static let SelectedTextColor = UIColor.labelText()
 		static let TextFont = UIFont.systemFont(ofSize: 15)
-		static let BackgroundColor = UIColor(white: 0.94, alpha: 1)
-		static let SelectionBackgroundColor = UIColor(white: 0.89, alpha: 1)
+		static let BackgroundColor = UIColor.background()
+        static let SelectionBackgroundColor = UIColor.selectedBackground()
 		static let SeparatorColor = UIColor.clear
 		static let CornerRadius: CGFloat = 2
 		static let RowHeight: CGFloat = 44
@@ -42,7 +80,6 @@ internal struct DPDConstant {
 			static let Radius: CGFloat = 8
 
 		}
-
 	}
 
 	internal struct Animation {

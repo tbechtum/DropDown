@@ -198,7 +198,11 @@ public final class DropDown: UIView {
 
 	public override var backgroundColor: UIColor? {
 		get { return tableViewBackgroundColor }
-		set { tableViewBackgroundColor = newValue! }
+		set {
+            if let newBackgroundColor = newValue { // added check 29-JAN-2020 by Thomas Bechtum
+                tableViewBackgroundColor = newBackgroundColor
+            }
+        }
 	}
 
 	/**

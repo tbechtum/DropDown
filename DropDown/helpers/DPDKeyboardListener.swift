@@ -3,6 +3,8 @@
 //  DropDown
 //
 //  Created by Kevin Hirsch on 30/07/15.
+//  Added new toolbar button by Thomas Bechtum on 10-JAN-2020
+//
 //  Copyright (c) 2015 Kevin Hirsch. All rights reserved.
 //
 

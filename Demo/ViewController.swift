@@ -174,7 +174,7 @@ class ViewController: UIViewController {
 			"Samsung S7",
 			"Huawei P8 Lite Smartphone 4G",
 			"Asus Zenfone Max 4G",
-			"Apple Watwh | Sport Edition"
+			"Apple Watch | Sport Edition"
 		]
 		
 		// Action triggered on selection
