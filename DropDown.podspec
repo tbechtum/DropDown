@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name = "DropDown"
-  s.version = "2.3.14"
+  s.version = "2.3.15"
   s.summary = "Material Design drop down list"
 
   s.description = <<-DESC
@@ -12,9 +12,9 @@ Pod::Spec.new do |s|
 
   s.license = { :type => "MIT", :file => "LICENSE" }
 
-  s.author = { "kevin-hirsch" => "kevin.hirsch.be@gmail.com" }
+  s.authors = { "kevin-hirsch" => "kevin.hirsch.be@gmail.com", "tbechtum" => "thomas.bechtum@unibz.it" }
 
-  s.platform = :ios, '8.0'
+  s.platform = :ios, '9.0'
   s.source = {
     :git => "https://github.com/tbechtum/DropDown.git",
     :tag => "v#{s.version.to_s}"
